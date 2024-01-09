@@ -1,13 +1,13 @@
-import React, { useContext, useLayoutEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Context } from "../context/BlogContext";
+import { usePostsContext } from "../context/BlogContext";
 import { FontAwesome } from "@expo/vector-icons";
 
 const ShowScreen = ({ route }) => {
   const id = route.params.id;
-  const { state } = useContext(Context);
-  const blogPost = state.find((item) => item.id === id);
+  const { data } = usePostsContext();
+  const blogPost = data.find((item) => item.id === id);
   const navigation = useNavigation();
 
   useLayoutEffect(() => {

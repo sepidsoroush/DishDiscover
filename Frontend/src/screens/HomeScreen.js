@@ -1,24 +1,26 @@
-import React, { useContext, useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import {
   FlatList,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
+  ActivityIndicator,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
-import { Context } from "../context/BlogContext";
+import { usePostsContext } from "../context/BlogContext";
 
 const HomeScreen = () => {
-  const { state, deleteBlogPost, getBlogPosts } = useContext(Context);
+  const { data, loading, errorMessage, deletePost, findAllPosts } =
+    usePostsContext();
   const navigation = useNavigation();
 
   useEffect(() => {
-    getBlogPosts();
+    findAllPosts();
 
     const unsuscribe = navigation.addListener("focus", () => {
-      getBlogPosts();
+      findAllPosts();
     });
 
     return unsuscribe;
@@ -36,24 +38,30 @@ const HomeScreen = () => {
 
   return (
     <View>
-      <FlatList
-        data={state}
-        keyExtractor={(data) => data.id}
-        renderItem={({ item }) => {
-          return (
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Show", { id: item.id })}
-            >
-              <View style={styles.row}>
-                <Text style={styles.title}>{item.title}</Text>
-                <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
-                  <FontAwesome name="trash-o" style={styles.icon} />
-                </TouchableOpacity>
-              </View>
-            </TouchableOpacity>
-          );
-        }}
-      />
+      {loading ? (
+        <ActivityIndicator size="large" color="#0000ff" />
+      ) : errorMessage ? (
+        <Text style={styles.errorMessage}>{errorMessage}</Text>
+      ) : (
+        <FlatList
+          data={data}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => {
+            return (
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Show", { id: item.id })}
+              >
+                <View style={styles.row}>
+                  <Text style={styles.title}>{item.title}</Text>
+                  <TouchableOpacity onPress={() => deletePost(item.id)}>
+                    <FontAwesome name="trash-o" style={styles.icon} />
+                  </TouchableOpacity>
+                </View>
+              </TouchableOpacity>
+            );
+          }}
+        />
+      )}
     </View>
   );
 };
@@ -72,6 +80,11 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: 24,
+  },
+  errorMessage: {
+    color: "red",
+    fontSize: 16,
+    marginTop: 10,
   },
 });
 

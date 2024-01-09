@@ -1,20 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import { StyleSheet } from "react-native";
-import { Context } from "../context/BlogContext";
 import { useNavigation } from "@react-navigation/native";
 import BlogPostForm from "../components/BlogPostForm";
+import { usePostsContext } from "../context/BlogContext";
 
 const CreateScreen = () => {
-  const { addBlogPost } = useContext(Context);
+  const { createPost } = usePostsContext();
   const navigation = useNavigation();
 
-  return (
-    <BlogPostForm
-      onSubmit={(title, content) =>
-        addBlogPost(title, content, () => navigation.navigate("Home"))
-      }
-    />
-  );
+  const submitHandler = (newPost) => {
+    createPost(newPost);
+    navigation.navigate("Home");
+  };
+
+  return <BlogPostForm onSubmit={submitHandler} />;
 };
 const styles = StyleSheet.create({});
 

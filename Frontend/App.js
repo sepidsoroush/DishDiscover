@@ -1,9 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-
-import { Provider } from "./src/context/BlogContext";
-
+import { PostsProvider } from "./src/context/BlogContext";
 import HomeScreen from "./src/screens/HomeScreen";
 import ShowScreen from "./src/screens/ShowScreen";
 import CreateScreen from "./src/screens/CreateScreen";
@@ -26,8 +24,8 @@ const App = () => {
 
 export default () => {
   return (
-    <Provider>
+    <PostsProvider>
       <App />
-    </Provider>
+    </PostsProvider>
   );
 };

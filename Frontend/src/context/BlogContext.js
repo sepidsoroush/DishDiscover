@@ -1,63 +1,22 @@
-import createDataContext from "./createDataContext";
-import jsonServer from "../api/jsonServer";
+import React, { createContext, useContext } from "react";
+import usePostsApi from "../hooks/usePostsApi";
 
-const blogReducer = (state, action) => {
-  switch (action.type) {
-    case "GET":
-      return action.payload;
-    case "DELETE":
-      return state.filter((blogPost) => blogPost.id !== action.payload);
-    case "EDIT":
-      return state.map((blogPost) => {
-        return blogPost.id === action.payload.id ? action.payload : blogPost;
-      });
-    default:
-      return state;
+const PostsContext = createContext();
+
+export const usePostsContext = () => {
+  const context = useContext(PostsContext);
+  if (!context) {
+    throw new Error("usePostsContext must be used within a PostsProvider");
   }
+  return context;
 };
 
-const getBlogPosts = (dispatch) => {
-  return async () => {
-    const response = await jsonServer.get("/blogPosts");
-    dispatch({ type: "GET", payload: response.data });
-  };
+export const PostsProvider = ({ children }) => {
+  const postsApiHook = usePostsApi();
+
+  return (
+    <PostsContext.Provider value={postsApiHook}>
+      {children}
+    </PostsContext.Provider>
+  );
 };
-
-const addBlogPost = (dispatch) => {
-  return async (title, content, callback) => {
-    await jsonServer.post("/blogPosts", { title, content });
-    if (callback) {
-      callback();
-    }
-  };
-};
-
-const deleteBlogPost = (dispatch) => {
-  return async (id) => {
-    await jsonServer.delete(`/blogPosts/${id}`);
-
-    dispatch({ type: "DELETE", payload: id });
-  };
-};
-
-const editBlogPost = (dispatch) => {
-  return async (id, title, content, callback) => {
-    await jsonServer.put(`/blogPosts/${id}`, { title, content });
-
-    dispatch({ type: "EDIT", payload: { id, title, content } });
-    if (callback) {
-      callback();
-    }
-  };
-};
-
-export const { Context, Provider } = createDataContext(
-  blogReducer,
-  {
-    getBlogPosts,
-    addBlogPost,
-    deleteBlogPost,
-    editBlogPost,
-  },
-  []
-);

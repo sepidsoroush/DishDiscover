@@ -5,6 +5,18 @@ const BlogPostForm = ({ onSubmit, initialValues }) => {
   const [title, setTitle] = useState(initialValues.title);
   const [content, setContent] = useState(initialValues.content);
 
+  const submitHandler = () => {
+    const postId = initialValues.id
+      ? initialValues.id
+      : Math.floor(Math.random() * 99999);
+
+    onSubmit({
+      id: postId,
+      title,
+      content,
+    });
+  };
+
   return (
     <View>
       <Text style={styles.label}>Enter title:</Text>
@@ -12,16 +24,16 @@ const BlogPostForm = ({ onSubmit, initialValues }) => {
         value={title}
         placeholder="title"
         style={styles.input}
-        onChangeText={(text) => setTitle(text)}
+        onChangeText={setTitle}
       />
       <Text style={styles.label}>Enter content:</Text>
       <TextInput
         value={content}
         placeholder="content"
         style={styles.input}
-        onChangeText={(text) => setContent(text)}
+        onChangeText={setContent}
       />
-      <Button title="Save Blog Post" onPress={() => onSubmit(title, content)} />
+      <Button title="Save Blog Post" onPress={submitHandler} />
     </View>
   );
 };
