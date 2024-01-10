@@ -11,12 +11,14 @@ import HomeScreen from "./src/screens/HomeScreen";
 import ShowScreen from "./src/screens/ShowScreen";
 import CreateScreen from "./src/screens/CreateScreen";
 import EditScreen from "./src/screens/EditScreen";
-import LoginScreen from "./src/screens/Login";
 import AccountScreen from "./src/screens/AccountScreen";
+import SigninScreen from "./src/screens/SignInScreen";
+import SignupScreen from "./src/screens/SignUpScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 const InsideStack = createNativeStackNavigator();
+const LoginStack = createNativeStackNavigator();
 
 function MainFlow() {
   return (
@@ -25,6 +27,15 @@ function MainFlow() {
       <InsideStack.Screen name="Show" component={ShowScreen} />
       <InsideStack.Screen name="Edit" component={EditScreen} />
     </InsideStack.Navigator>
+  );
+}
+
+function LoginFlow() {
+  return (
+    <LoginStack.Navigator screenOptions={{ headerShown: false }}>
+      <LoginStack.Screen name="Signin" component={SigninScreen} />
+      <LoginStack.Screen name="Signup" component={SignupScreen} />
+    </LoginStack.Navigator>
   );
 }
 
@@ -50,7 +61,7 @@ const App = () => {
         {user ? (
           <Stack.Screen name="TabNavigator" component={TabNavigator} />
         ) : (
-          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Login" component={LoginFlow} />
         )}
       </Stack.Navigator>
     </NavigationContainer>

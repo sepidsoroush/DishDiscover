@@ -25,7 +25,6 @@ const useAuth = () => {
       setUser(newUser);
       alert("Check your emails!");
     } catch (error) {
-      console.log(error);
       alert("SignUp failed: " + error.message);
     } finally {
       setLoading(false);
@@ -43,7 +42,6 @@ const useAuth = () => {
       const signedInUser = userCredential.user;
       setUser(signedInUser);
     } catch (error) {
-      console.log(error);
       alert("SignIn failed: " + error.message);
     } finally {
       setLoading(false);
@@ -77,8 +75,12 @@ const useAuth = () => {
         });
       });
     } catch (error) {
-      console.error("Auto login failed:", error);
+      alert("Auto login failed:", error);
     }
+  };
+
+  const clearErrorMessage = () => {
+    setError("");
   };
 
   useEffect(() => {
@@ -92,6 +94,7 @@ const useAuth = () => {
     signUp,
     signIn,
     signOut,
+    clearErrorMessage,
   };
 };
 
