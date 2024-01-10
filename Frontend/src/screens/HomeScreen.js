@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect } from "react";
 import {
   FlatList,
   StyleSheet,
@@ -25,16 +25,6 @@ const HomeScreen = () => {
 
     return unsuscribe;
   }, []);
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <TouchableOpacity onPress={() => navigation.navigate("Create")}>
-          <FontAwesome name="plus" size={24} color="black" />
-        </TouchableOpacity>
-      ),
-    });
-  }, [navigation]);
 
   return (
     <View>
