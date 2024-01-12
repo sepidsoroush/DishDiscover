@@ -1,28 +1,19 @@
 import React, { useEffect } from "react";
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  ActivityIndicator,
-} from "react-native";
-import { useNavigation } from "@react-navigation/native";
-// import { FontAwesome } from "@expo/vector-icons";
+import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+
 import useFetch from "../hooks/useFetch";
+import ResultsList from "../components/ResultsList";
 
 const HomeScreen = () => {
-  const navigation = useNavigation();
-  const { results, loading, errorMessage, fetchData } = useFetch();
+  const {
+    data,
+    loading,
+    errorMessage,
+    fetchData: fetchComplexSearch,
+  } = useFetch();
 
   useEffect(() => {
-    fetchData("");
-
-    const unsuscribe = navigation.addListener("focus", () => {
-      fetchData("");
-    });
-
-    return unsuscribe;
+    fetchComplexSearch("/recipes/complexSearch", {});
   }, []);
 
   return (
@@ -32,21 +23,7 @@ const HomeScreen = () => {
       ) : errorMessage ? (
         <Text style={styles.errorMessage}>{errorMessage}</Text>
       ) : (
-        <FlatList
-          data={results}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => {
-            return (
-              <TouchableOpacity
-                onPress={() => navigation.navigate("Show", { id: item.id })}
-              >
-                <View style={styles.row}>
-                  <Text style={styles.title}>{item.title}</Text>
-                </View>
-              </TouchableOpacity>
-            );
-          }}
-        />
+        <ResultsList results={data.results} />
       )}
     </View>
   );

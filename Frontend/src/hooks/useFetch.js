@@ -2,15 +2,15 @@ import { useState } from "react";
 import api from "../api";
 
 const useFetch = () => {
-  const [results, setResults] = useState([]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const fetchData = async (urlParams) => {
+  const fetchData = async (endpoint, params) => {
     try {
       setLoading(true);
-      const response = await api.get(urlParams);
-      setResults(response.data.results);
+      const response = await api.get(endpoint, { params });
+      setData(response.data);
     } catch (error) {
       setErrorMessage(error.message);
     } finally {
@@ -18,7 +18,7 @@ const useFetch = () => {
     }
   };
 
-  return { results, loading, errorMessage, fetchData };
+  return { data, loading, errorMessage, fetchData };
 };
 
 export default useFetch;

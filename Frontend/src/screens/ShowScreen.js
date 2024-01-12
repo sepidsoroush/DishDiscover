@@ -1,32 +1,55 @@
-import React, { useLayoutEffect } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import React, { useEffect, useLayoutEffect } from "react";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { usePostsContext } from "../context/BlogContext";
+import useFetch from "../hooks/useFetch";
 import { FontAwesome } from "@expo/vector-icons";
 
 const ShowScreen = ({ route }) => {
   const id = route.params.id;
-  const { data } = usePostsContext();
-  const blogPost = data.find((item) => item.id === id);
   const navigation = useNavigation();
+  const { data, fetchData: fetchRecipeInfo } = useFetch();
+
+  useEffect(() => {
+    fetchRecipeInfo(`/recipes/${id}/information`, {});
+  }, []);
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerRight: () => (
-        <TouchableOpacity onPress={() => navigation.navigate("Edit", { id })}>
-          <FontAwesome name="pencil" size={24} color="black" />
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <FontAwesome name="arrow-left" size={24} color="black" />
         </TouchableOpacity>
       ),
     });
   }, [navigation]);
 
   return (
-    <View>
-      <Text>{blogPost.title}</Text>
-      <Text>{blogPost.content}</Text>
+    <View style={styles.container}>
+      <Image source={{ uri: data.image }} style={styles.image} />
+      <Text style={styles.name}>{data.title}</Text>
+      <Text style={styles.info}>
+        {data.readyInMinutes} mins, {data.servings} servings
+      </Text>
+      <Text style={styles.info}>{data.summary}</Text>
     </View>
   );
 };
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    marginLeft: 15,
+  },
+  image: {
+    width: 250,
+    height: 120,
+    borderRadius: 4,
+    marginBottom: 5,
+  },
+  name: {
+    fontWeight: "bold",
+  },
+  info: {
+    color: "gray",
+  },
+});
 
 export default ShowScreen;
