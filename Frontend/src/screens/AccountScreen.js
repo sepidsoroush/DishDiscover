@@ -1,12 +1,9 @@
 import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import { useAuthContext } from "../context/AuthContext";
-// import app from "../../firebaseConfig";
-// import { getAuth } from "firebase/auth";
 
 const AccountScreen = () => {
   const { signOut } = useAuthContext();
-  // const auth = getAuth(app);
 
   return (
     <View style={styles.container}>

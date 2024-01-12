@@ -8,19 +8,18 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { FontAwesome } from "@expo/vector-icons";
-import { usePostsContext } from "../context/BlogContext";
+// import { FontAwesome } from "@expo/vector-icons";
+import useFetch from "../hooks/useFetch";
 
 const HomeScreen = () => {
-  const { data, loading, errorMessage, deletePost, findAllPosts } =
-    usePostsContext();
   const navigation = useNavigation();
+  const { results, loading, errorMessage, fetchData } = useFetch();
 
   useEffect(() => {
-    findAllPosts();
+    fetchData("");
 
     const unsuscribe = navigation.addListener("focus", () => {
-      findAllPosts();
+      fetchData("");
     });
 
     return unsuscribe;
@@ -34,7 +33,7 @@ const HomeScreen = () => {
         <Text style={styles.errorMessage}>{errorMessage}</Text>
       ) : (
         <FlatList
-          data={data}
+          data={results}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => {
             return (
@@ -43,9 +42,6 @@ const HomeScreen = () => {
               >
                 <View style={styles.row}>
                   <Text style={styles.title}>{item.title}</Text>
-                  <TouchableOpacity onPress={() => deletePost(item.id)}>
-                    <FontAwesome name="trash-o" style={styles.icon} />
-                  </TouchableOpacity>
                 </View>
               </TouchableOpacity>
             );

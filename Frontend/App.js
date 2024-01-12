@@ -70,10 +70,10 @@ const App = () => {
 
 export default () => {
   return (
-    <PostsProvider>
-      <AuthProvider>
+    <AuthProvider>
+      <PostsProvider>
         <App />
-      </AuthProvider>
-    </PostsProvider>
+      </PostsProvider>
+    </AuthProvider>
   );
 };
