@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 
-import { PostsProvider } from "./src/context/BlogContext";
+// import { PostsProvider } from "./src/context/BlogContext";
 import { AuthProvider, useAuthContext } from "./src/context/AuthContext";
 
 import HomeScreen from "./src/screens/HomeScreen";
@@ -64,9 +64,7 @@ const App = () => {
 export default () => {
   return (
     <AuthProvider>
-      <PostsProvider>
-        <App />
-      </PostsProvider>
+      <App />
     </AuthProvider>
   );
 };

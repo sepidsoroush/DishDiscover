@@ -2,14 +2,14 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import BlogPostForm from "../components/BlogPostForm";
-import { usePostsContext } from "../context/BlogContext";
+// import { usePostsContext } from "../context/BlogContext";
 
 const CreateScreen = () => {
-  const { createPost } = usePostsContext();
+  // const { createPost } = usePostsContext();
   const navigation = useNavigation();
 
   const submitHandler = (newPost) => {
-    createPost(newPost);
+    // createPost(newPost);r
     navigation.navigate("Home");
   };
 
