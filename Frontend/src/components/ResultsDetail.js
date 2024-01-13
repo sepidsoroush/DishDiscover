@@ -5,10 +5,7 @@ const ResultsDetail = ({ result }) => {
   return (
     <View style={styles.container}>
       <Image source={{ uri: result.image }} style={styles.image} />
-      <Text style={styles.name}>{result.title}</Text>
-      <Text style={styles.info}>
-        {result.readyInMinutes} Mins, {result.servings} Servings
-      </Text>
+      <Text style={styles.title}>{result.title}</Text>
     </View>
   );
 };
@@ -22,11 +19,8 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     marginBottom: 5,
   },
-  name: {
+  title: {
     fontWeight: "bold",
-  },
-  info: {
-    color: "gray",
   },
 });
 

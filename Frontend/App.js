@@ -17,32 +17,34 @@ import SignupScreen from "./src/screens/SignUpScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
-const InsideStack = createNativeStackNavigator();
-const LoginStack = createNativeStackNavigator();
 
 function MainFlow() {
   return (
-    <InsideStack.Navigator screenOptions={{ headerShown: false }}>
-      <InsideStack.Screen name="MainFlow" component={HomeScreen} />
-      <InsideStack.Screen name="Show" component={ShowScreen} />
-      <InsideStack.Screen name="Edit" component={EditScreen} />
-    </InsideStack.Navigator>
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Show" component={ShowScreen} />
+      <Stack.Screen name="Edit" component={EditScreen} />
+    </Stack.Navigator>
   );
 }
 
 function LoginFlow() {
   return (
-    <LoginStack.Navigator screenOptions={{ headerShown: false }}>
-      <LoginStack.Screen name="Signin" component={SigninScreen} />
-      <LoginStack.Screen name="Signup" component={SignupScreen} />
-    </LoginStack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Signin" component={SigninScreen} />
+      <Stack.Screen name="Signup" component={SignupScreen} />
+    </Stack.Navigator>
   );
 }
 
 function TabNavigator() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={MainFlow} />
+      <Tab.Screen
+        name="MainFlow"
+        component={MainFlow}
+        options={{ headerShown: false }}
+      />
       <Tab.Screen name="Create" component={CreateScreen} />
       <Tab.Screen name="Account" component={AccountScreen} />
     </Tab.Navigator>
@@ -54,16 +56,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Login"
-        screenOptions={{ headerShown: false }}
-      >
-        {user ? (
-          <Stack.Screen name="TabNavigator" component={TabNavigator} />
-        ) : (
-          <Stack.Screen name="Login" component={LoginFlow} />
-        )}
-      </Stack.Navigator>
+      {user ? <TabNavigator /> : <LoginFlow />}
     </NavigationContainer>
   );
 };

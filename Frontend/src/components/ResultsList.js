@@ -21,6 +21,7 @@ const ResultsList = ({ results }) => {
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
+        initialNumToRender={10}
         data={results}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => {
