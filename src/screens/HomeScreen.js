@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
-
 import useFetch from "../hooks/useFetch";
 import ResultsList from "../components/ResultsList";
 
