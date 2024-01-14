@@ -1,9 +1,21 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ActivityIndicator,
+  ScrollView,
+  SafeAreaView,
+} from "react-native";
 import useFetch from "../hooks/useFetch";
 import ResultsList from "../components/ResultsList";
+import { useFonts, Poppins_600SemiBold } from "@expo-google-fonts/poppins";
 
 const HomeScreen = () => {
+  let [fontsLoaded] = useFonts({
+    Poppins_600SemiBold,
+  });
+
   const {
     data,
     loading,
@@ -16,29 +28,43 @@ const HomeScreen = () => {
   }, []);
 
   return (
-    <View>
-      {loading ? (
+    <SafeAreaView>
+      {!fontsLoaded || loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : errorMessage ? (
         <Text style={styles.errorMessage}>{errorMessage}</Text>
       ) : (
-        <ResultsList results={data.results} />
+        <ScrollView>
+          <View style={styles.headerContainer}>
+            <Text style={styles.header}>Find best recipes for cooking</Text>
+          </View>
+          <ResultsList results={data.results} />
+        </ScrollView>
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  row: {
+  // row: {
+  //   flexDirection: "row",
+  //   justifyContent: "space-between",
+  //   paddingVertical: 20,
+  //   paddingHorizontal: 10,
+  //   borderTopWidth: 1,
+  //   borderColor: "gray",
+  // },
+  headerContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 20,
-    paddingHorizontal: 10,
-    borderTopWidth: 1,
-    borderColor: "gray",
+    flexWrap: "wrap",
   },
-  title: {
-    fontSize: 18,
+  header: {
+    marginVertical: 20,
+    marginHorizontal: 22,
+    color: "#303030",
+    fontSize: 28,
+    fontFamily: "Poppins_600SemiBold",
+    lineHeight: 36,
   },
   icon: {
     fontSize: 24,
