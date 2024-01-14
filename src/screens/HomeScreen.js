@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,14 +7,16 @@ import {
   ScrollView,
   SafeAreaView,
 } from "react-native";
+import { useFonts, Poppins_600SemiBold } from "@expo-google-fonts/poppins";
 import useFetch from "../hooks/useFetch";
 import ResultsList from "../components/ResultsList";
-import { useFonts, Poppins_600SemiBold } from "@expo-google-fonts/poppins";
+import SearchBar from "../components/SearchBar";
 
 const HomeScreen = () => {
   let [fontsLoaded] = useFonts({
     Poppins_600SemiBold,
   });
+  const [term, setTerm] = useState("");
 
   const {
     data,
@@ -27,8 +29,19 @@ const HomeScreen = () => {
     fetchComplexSearch("/recipes/complexSearch", {});
   }, []);
 
+  const searchHandler = () => {
+    fetchComplexSearch("/recipes/complexSearch", {
+      query: term,
+    });
+  };
+
   return (
     <SafeAreaView>
+      <SearchBar
+        term={term}
+        onTermChange={setTerm}
+        onTermSubmit={searchHandler}
+      />
       {!fontsLoaded || loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : errorMessage ? (
