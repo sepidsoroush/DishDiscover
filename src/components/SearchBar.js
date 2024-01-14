@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, View, TextInput } from "react-native";
 import { SearchIcon } from "../assets/Generalcons";
+import Spacer from "./UI/Spacer";
 import { useFonts, Poppins_400Regular } from "@expo-google-fonts/poppins";
 
 const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
@@ -16,7 +17,7 @@ const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
   ];
 
   return (
-    <>
+    <Spacer>
       {fontsLoaded && (
         <View style={backgroundStyle}>
           <SearchIcon style={styles.iconStyle} />
@@ -33,7 +34,7 @@ const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
           />
         </View>
       )}
-    </>
+    </Spacer>
   );
 };
 const styles = StyleSheet.create({
@@ -41,8 +42,6 @@ const styles = StyleSheet.create({
     height: 50,
     paddingHorizontal: 16,
     paddingVertical: 12,
-    marginHorizontal: 20,
-    marginVertical: 8,
     backgroundColor: "white",
     borderRadius: 10,
     borderWidth: 1,

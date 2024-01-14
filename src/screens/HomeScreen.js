@@ -11,6 +11,7 @@ import { useFonts, Poppins_600SemiBold } from "@expo-google-fonts/poppins";
 import useFetch from "../hooks/useFetch";
 import ResultsList from "../components/ResultsList";
 import SearchBar from "../components/SearchBar";
+import Spacer from "../components/UI/Spacer";
 
 const HomeScreen = () => {
   let [fontsLoaded] = useFonts({
@@ -37,22 +38,22 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView>
-      <SearchBar
-        term={term}
-        onTermChange={setTerm}
-        onTermSubmit={searchHandler}
-      />
       {!fontsLoaded || loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : errorMessage ? (
         <Text style={styles.errorMessage}>{errorMessage}</Text>
       ) : (
-        <ScrollView>
-          <View style={styles.headerContainer}>
+        <>
+          <Spacer>
             <Text style={styles.header}>Find best recipes for cooking</Text>
-          </View>
+          </Spacer>
+          <SearchBar
+            term={term}
+            onTermChange={setTerm}
+            onTermSubmit={searchHandler}
+          />
           <ResultsList results={data.results} />
-        </ScrollView>
+        </>
       )}
     </SafeAreaView>
   );
@@ -67,13 +68,8 @@ const styles = StyleSheet.create({
   //   borderTopWidth: 1,
   //   borderColor: "gray",
   // },
-  headerContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
+
   header: {
-    marginVertical: 20,
-    marginHorizontal: 22,
     color: "#303030",
     fontSize: 28,
     fontFamily: "Poppins_600SemiBold",
