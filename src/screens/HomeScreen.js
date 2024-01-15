@@ -12,6 +12,7 @@ import useFetch from "../hooks/useFetch";
 import ResultsList from "../components/ResultsList";
 import SearchBar from "../components/SearchBar";
 import Trending from "../components/Trending";
+import PopularCategory from "../components/PopularCategory";
 import Spacer from "../components/UI/Spacer";
 
 const HomeScreen = () => {
@@ -54,6 +55,7 @@ const HomeScreen = () => {
             onTermSubmit={searchHandler}
           />
           <Trending />
+          <PopularCategory />
           {/* <ResultsList results={data.results} /> */}
         </>
       )}
