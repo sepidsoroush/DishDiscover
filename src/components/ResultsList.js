@@ -12,9 +12,9 @@ import ResultsDetail from "./ResultsDetail";
 const ResultsList = ({ results }) => {
   const navigation = useNavigation();
 
-  if (!results.length) {
-    return null;
-  }
+  // if (!results.length) {
+  //   return null;
+  // }
 
   return (
     <View style={styles.container}>
@@ -38,14 +38,8 @@ const ResultsList = ({ results }) => {
   );
 };
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginLeft: 15,
-    marginBottom: 5,
-  },
   container: {
-    marginBottom: 10,
+    marginLeft: 20,
   },
 });
 

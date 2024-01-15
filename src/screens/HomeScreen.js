@@ -11,6 +11,7 @@ import { useFonts, Poppins_600SemiBold } from "@expo-google-fonts/poppins";
 import useFetch from "../hooks/useFetch";
 import ResultsList from "../components/ResultsList";
 import SearchBar from "../components/SearchBar";
+import Trending from "../components/Trending";
 import Spacer from "../components/UI/Spacer";
 
 const HomeScreen = () => {
@@ -52,7 +53,8 @@ const HomeScreen = () => {
             onTermChange={setTerm}
             onTermSubmit={searchHandler}
           />
-          <ResultsList results={data.results} />
+          <Trending />
+          {/* <ResultsList results={data.results} /> */}
         </>
       )}
     </SafeAreaView>
