@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View, TextInput } from "react-native";
-import { SearchIcon } from "../assets/Generalcons";
+import { SearchIcon } from "./Icons/GeneralIcons";
 import Spacer from "./UI/Spacer";
 import { useFonts, Poppins_400Regular } from "@expo-google-fonts/poppins";
 

@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import useFetch from "../hooks/useFetch";
-import { FontAwesome } from "@expo/vector-icons";
+import { LeftArrow } from "../components/Icons/GeneralIcons";
 
 const ShowScreen = ({ route }) => {
   const id = route.params.id;
@@ -17,7 +17,7 @@ const ShowScreen = ({ route }) => {
     navigation.setOptions({
       headerLeft: () => (
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <FontAwesome name="arrow-left" size={24} color="black" />
+          <LeftArrow />
         </TouchableOpacity>
       ),
     });
