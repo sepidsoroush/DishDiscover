@@ -59,6 +59,7 @@ const Categories = ({ onParamsChange }) => {
 const styles = StyleSheet.create({
   container: {
     marginLeft: 20,
+    marginVertical: 16,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
