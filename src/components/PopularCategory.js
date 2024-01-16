@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { RightArrow } from "./Icons/GeneralIcons";
 import Spacer from "./UI/Spacer";
 import Categories from "./Categories";
 import ResultsList from "./ResultsList";
 import useFetch from "../hooks/useFetch";
 
 const PopularCategory = () => {
-  //   const { data, fetchData: fetchComplexSearch } = useFetch();
+  const [params, setParams] = useState({ cuisine: "italian" });
+  const { data, fetchData: fetchCategorySearch } = useFetch();
 
-  //   useEffect(() => {
-  //     fetchComplexSearch("/recipes/random?number=5", {});
-  //   }, []);
+  useEffect(() => {
+    fetchCategorySearch("/recipes/complexSearch", params);
+  }, [params]);
 
   return (
     <>
@@ -20,8 +20,8 @@ const PopularCategory = () => {
           <Text style={styles.headerTitle}>Popular Category</Text>
         </View>
       </Spacer>
-      <Categories />
-      {/* <ResultsList results={data.recipes} /> */}
+      <Categories onParamsChange={setParams} />
+      <ResultsList results={data.results} />
     </>
   );
 };

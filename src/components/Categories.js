@@ -3,7 +3,7 @@ import { View, FlatList, StyleSheet } from "react-native";
 import ActiveLabel from "./StyledComponents/ActiveLabel";
 import InactiveLabel from "./StyledComponents/InactiveLabel";
 
-const Categories = () => {
+const Categories = ({ onParamsChange }) => {
   const links = [
     { id: 1, title: "Italian", params: { cuisine: "italian" } },
     { id: 2, title: "Salad", params: { type: "salad" } },
@@ -17,10 +17,11 @@ const Categories = () => {
     { id: 10, title: "Dessert", params: { type: "dessert" } },
   ];
 
-  //   const [btnName, setBtnName] = useState("");
+  const [activeBtn, setActiveBtn] = useState("Italian");
 
-  const categoryHandler = (e) => {
-    console.log(e);
+  const categoryHandler = (event) => {
+    onParamsChange(event.params);
+    setActiveBtn(event.title);
   };
 
   return (
@@ -30,17 +31,25 @@ const Categories = () => {
         showsHorizontalScrollIndicator={false}
         data={links}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => {
-          return (
+        renderItem={({ item }) =>
+          activeBtn === item.title ? (
+            <ActiveLabel
+              onPress={() => {
+                categoryHandler(item);
+              }}
+            >
+              {item.title}
+            </ActiveLabel>
+          ) : (
             <InactiveLabel
               onPress={() => {
-                categoryHandler(item.params);
+                categoryHandler(item);
               }}
             >
               {item.title}
             </InactiveLabel>
-          );
-        }}
+          )
+        }
         ItemSeparatorComponent={() => <View style={{ width: 8 }}></View>}
       />
     </View>
