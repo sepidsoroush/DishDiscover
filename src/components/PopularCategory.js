@@ -29,7 +29,10 @@ const PopularCategory = () => {
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity onPress={() => console.log(item)}>
+              <TouchableOpacity
+                style={styles.card}
+                onPress={() => console.log(item)}
+              >
                 <DishCard result={item} />
               </TouchableOpacity>
             );
@@ -43,6 +46,11 @@ const PopularCategory = () => {
 const styles = StyleSheet.create({
   container: {
     marginLeft: 20,
+  },
+  card: {
+    marginRight: 15,
+    marginTop: 12,
+    height: 250,
   },
 });
 

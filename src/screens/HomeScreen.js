@@ -13,6 +13,7 @@ import ResultsList from "../components/ResultsList";
 import SearchBar from "../components/SearchBar";
 import Trending from "../components/Trending";
 import PopularCategory from "../components/PopularCategory";
+import SavedList from "../components/SavedList";
 import Spacer from "../components/UI/Spacer";
 
 const HomeScreen = () => {
@@ -56,6 +57,7 @@ const HomeScreen = () => {
           />
           <Trending />
           <PopularCategory />
+          <SavedList />
           {/* <ResultsList results={data.results} /> */}
         </ScrollView>
       )}

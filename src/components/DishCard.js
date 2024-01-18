@@ -4,7 +4,7 @@ import { InactiveBookmark, ClockIcon } from "./Icons";
 
 const DishCard = ({ result }) => {
   return (
-    <View style={styles.container}>
+    <>
       <Image source={{ uri: result.image }} style={styles.image} />
       <View style={styles.background}>
         <Text style={styles.title}>{result.title}</Text>
@@ -21,15 +21,11 @@ const DishCard = ({ result }) => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginRight: 15,
-    marginVertical: 12,
-  },
   image: {
     width: 110,
     height: 110,
@@ -49,7 +45,7 @@ const styles = StyleSheet.create({
     top: -55,
     paddingTop: 55,
     paddingBottom: 12,
-    display: "flex",
+    // display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "center",
