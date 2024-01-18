@@ -45,7 +45,7 @@ const HomeScreen = () => {
       ) : errorMessage ? (
         <Text style={styles.errorMessage}>{errorMessage}</Text>
       ) : (
-        <>
+        <ScrollView>
           <Spacer>
             <Text style={styles.header}>Find best recipes for cooking</Text>
           </Spacer>
@@ -57,7 +57,7 @@ const HomeScreen = () => {
           <Trending />
           <PopularCategory />
           {/* <ResultsList results={data.results} /> */}
-        </>
+        </ScrollView>
       )}
     </SafeAreaView>
   );

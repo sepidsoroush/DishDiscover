@@ -23,7 +23,9 @@ const Stack = createNativeStackNavigator();
 
 function MainFlow() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{ contentStyle: { backgroundColor: "white" } }}
+    >
       <Stack.Screen
         name="Home"
         component={HomeScreen}
@@ -53,7 +55,11 @@ export default function TabNavigator() {
         options={{
           tabBarShowLabel: false,
           tabBarIcon: ({ focused }) =>
-            focused ? <ActiveBookmark /> : <InactiveBookmark />,
+            focused ? (
+              <ActiveBookmark />
+            ) : (
+              <InactiveBookmark fill="#C1C1C1" width="24" height="24" />
+            ),
         }}
       />
       <Tab.Screen
