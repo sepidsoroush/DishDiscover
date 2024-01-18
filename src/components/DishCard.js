@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import { InactiveBookmark } from "./Icons/MenuIcons";
+import { ClockIcon } from "./Icons/GeneralIcons";
 
 const DishCard = ({ result }) => {
   return (
@@ -9,8 +10,8 @@ const DishCard = ({ result }) => {
       <View style={styles.background}>
         <Text style={styles.title}>{result.title}</Text>
         <View style={styles.info}>
-          <View>
-            <Text style={styles.timeTitle}>Time</Text>
+          <View style={styles.timeContainer}>
+            <ClockIcon fill="#C1C1C1" />
             <Text style={styles.time}>10 Mins</Text>
           </View>
           <TouchableOpacity
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
     position: "relative",
     left: 20,
     zIndex: 2,
-    borderWidth: 15,
+    borderWidth: 12,
     borderColor: "#D1D1D1",
     marginBottom: 10,
   },
@@ -57,8 +58,9 @@ const styles = StyleSheet.create({
   title: {
     flexShrink: 1,
     fontWeight: "semibold",
-    fontSize: 16,
+    fontSize: 14,
     marginVertical: 6,
+    marginHorizontal: 12,
     textAlign: "center",
   },
   info: {
@@ -69,16 +71,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "flex-end",
   },
-  timeTitle: {
-    color: "#C1C1C1",
-    fontSize: 12,
-    fontWeight: 400,
-    marginBottom: 4,
+  timeContainer: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
   },
   time: {
     color: "#303030",
     fontSize: 12,
     fontWeight: "bold",
+    marginLeft: 2,
   },
   iconContainer: {
     width: 24,
