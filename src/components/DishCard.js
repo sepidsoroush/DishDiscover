@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
-import { InactiveBookmark } from "./Icons/MenuIcons";
-import { ClockIcon } from "./Icons/GeneralIcons";
+import { InactiveBookmark, ClockIcon } from "./Icons";
 
 const DishCard = ({ result }) => {
   return (

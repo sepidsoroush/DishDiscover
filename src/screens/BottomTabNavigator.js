@@ -11,7 +11,7 @@ import {
   ActiveBookmark,
   ActiveNotification,
   ActiveProfile,
-} from "../components/Icons/MenuIcons";
+} from "../components/Icons";
 import ProfileScreen from "./ProfileScreen";
 import NotificationScreen from "./NotificationScreen";
 import BookmarkScreen from "./BookmarkScreen";

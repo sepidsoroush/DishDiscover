@@ -1,8 +1,13 @@
 import React from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
-import { Vegan, GlutenFree, DairyFree, Economic } from "./Icons/FoodIcons";
-import { InactiveBookmark } from "./Icons/MenuIcons";
-import { StarIcon } from "./Icons/GeneralIcons";
+import {
+  Vegan,
+  GlutenFree,
+  DairyFree,
+  Economic,
+  InactiveBookmark,
+  StarIcon,
+} from "./Icons";
 
 const ResultsDetail = ({ result }) => {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { RightArrow } from "../Icons/GeneralIcons";
+import { RightArrow } from "../Icons";
 
 const Header = ({ children, moreLink }) => {
   return (

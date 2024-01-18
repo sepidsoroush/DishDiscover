@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import useFetch from "../hooks/useFetch";
-import { LeftArrow } from "../components/Icons/GeneralIcons";
+import { LeftArrow } from "../components/Icons";
 
 const ShowScreen = ({ route }) => {
   const id = route.params.id;
