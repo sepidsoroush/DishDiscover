@@ -1,6 +1,7 @@
 import React from "react";
-import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
-import { InactiveBookmark, ClockIcon } from "./Icons";
+import { StyleSheet, View, Text, Image } from "react-native";
+import { ClockIcon } from "./Icons";
+import Bookmark from "./UI/Bookmark";
 
 const DishCard = ({ result }) => {
   return (
@@ -13,12 +14,7 @@ const DishCard = ({ result }) => {
             <ClockIcon fill="#C1C1C1" />
             <Text style={styles.time}>10 Mins</Text>
           </View>
-          <TouchableOpacity
-            onPress={() => console.log("Bookmarked!")}
-            style={styles.iconContainer}
-          >
-            <InactiveBookmark fill="#303030" width="16" height="16" />
-          </TouchableOpacity>
+          <Bookmark resultId={result.id} />
         </View>
       </View>
     </>
@@ -45,7 +41,6 @@ const styles = StyleSheet.create({
     top: -55,
     paddingTop: 55,
     paddingBottom: 12,
-    // display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "center",
@@ -76,15 +71,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "bold",
     marginLeft: 2,
-  },
-  iconContainer: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    backgroundColor: "white",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
 

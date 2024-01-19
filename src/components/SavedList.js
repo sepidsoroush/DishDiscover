@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { StyleSheet, View, FlatList, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useDatabaseContext } from "../context/DatabaseContext";
 import useFetch from "../hooks/useFetch";
 import Spacer from "./UI/Spacer";
 import Header from "./UI/Header";
@@ -8,12 +9,15 @@ import ResultsDetail from "./ResultsDetail";
 
 const SavedList = () => {
   const navigation = useNavigation();
-
-  const { data, fetchData: fetchComplexSearch } = useFetch();
+  const { bookmarkedIds } = useDatabaseContext();
+  const { data, fetchData: fetchRecipesByIds } = useFetch();
 
   useEffect(() => {
-    fetchComplexSearch("/recipes/random?number=10", {});
-  }, []);
+    if (bookmarkedIds.length > 0) {
+      const idsParam = bookmarkedIds.join(",");
+      fetchRecipesByIds(`/recipes/informationBulk?ids=${idsParam}`, {});
+    }
+  }, [bookmarkedIds]);
 
   return (
     <>
@@ -25,7 +29,7 @@ const SavedList = () => {
           horizontal
           showsHorizontalScrollIndicator={false}
           initialNumToRender={10}
-          data={data.recipes}
+          data={data}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => {
             return (

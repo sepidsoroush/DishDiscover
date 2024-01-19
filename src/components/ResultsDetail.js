@@ -1,13 +1,7 @@
 import React from "react";
-import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
-import {
-  Vegan,
-  GlutenFree,
-  DairyFree,
-  Economic,
-  InactiveBookmark,
-  StarIcon,
-} from "./Icons";
+import { StyleSheet, View, Text, Image } from "react-native";
+import { StarIcon } from "./Icons";
+import Bookmark from "./UI/Bookmark";
 
 const ResultsDetail = ({ result }) => {
   return (
@@ -19,12 +13,7 @@ const ResultsDetail = ({ result }) => {
             {Math.round(result.spoonacularScore / 2) / 10}
           </Text>
         </View>
-        <TouchableOpacity
-          onPress={() => console.log("Bookmarked!")}
-          style={styles.bookmarkContainer}
-        >
-          <InactiveBookmark fill="#303030" width="16" height="16" />
-        </TouchableOpacity>
+        <Bookmark resultId={result.id} />
       </View>
       <Image source={{ uri: result.image }} style={styles.image} />
       <View style={styles.titleContainer}>
@@ -34,31 +23,10 @@ const ResultsDetail = ({ result }) => {
             : result.title}
         </Text>
       </View>
-      {/* <View style={styles.iconContainer}>
-        {(result.vegetarian || result.vegan) && (
-          <View style={styles.icon}>
-            <Vegan />
-          </View>
-        )}
-        {result.glutenFree && (
-          <View style={styles.icon}>
-            <GlutenFree />
-          </View>
-        )}
-        {result.dairyFree && (
-          <View style={styles.icon}>
-            <DairyFree />
-          </View>
-        )}
-        {result.cheap && (
-          <View style={styles.icon}>
-            <Economic />
-          </View>
-        )}
-      </View> */}
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     marginRight: 15,
@@ -89,34 +57,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginLeft: 4,
   },
-  bookmarkContainer: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    backgroundColor: "white",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
   image: {
     width: 200,
     height: 160,
     borderRadius: 10,
   },
-  // iconContainer: {
-  //   display: "flex",
-  //   flexDirection: "row",
-  //   justifyContent: "flex-start",
-  //   alignItems: "center",
-  // },
-  // icon: {
-  //   marginHorizontal: 4,
-  // },
-  // info: {
-  //   display: "flex",
-  //   flexDirection: "column",
-  //   justifyContent: "space-between",
-  // },
   titleContainer: {
     width: 200,
   },

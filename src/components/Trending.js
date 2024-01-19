@@ -28,9 +28,13 @@ const Trending = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  // const filterResultsByScore = (number) => {
-  //   return data.recipes.filter((item) => item.spoonacularScore > number);
-  // };
+  if (!data || !data.recipes) {
+    return null; // todo: add loading indicator or skeleton
+  }
+
+  const filteredData = data.recipes.filter(
+    (item) => item.spoonacularScore > 50
+  );
 
   return (
     <>
@@ -42,7 +46,7 @@ const Trending = () => {
           horizontal
           showsHorizontalScrollIndicator={false}
           initialNumToRender={10}
-          data={data.recipes}
+          data={filteredData}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => {
             return (

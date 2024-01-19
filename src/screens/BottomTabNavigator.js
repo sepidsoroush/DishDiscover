@@ -56,7 +56,7 @@ export default function TabNavigator() {
           tabBarShowLabel: false,
           tabBarIcon: ({ focused }) =>
             focused ? (
-              <ActiveBookmark />
+              <ActiveBookmark fill="#303030" width="24" height="24" />
             ) : (
               <InactiveBookmark fill="#C1C1C1" width="24" height="24" />
             ),
