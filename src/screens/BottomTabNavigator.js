@@ -31,7 +31,11 @@ function MainFlow() {
         component={HomeScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Show" component={ShowScreen} />
+      <Stack.Screen
+        name="Show"
+        component={ShowScreen}
+        options={{ title: "" }}
+      />
     </Stack.Navigator>
   );
 }

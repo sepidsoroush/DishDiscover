@@ -8,7 +8,7 @@ const ResultsDetail = ({ result }) => {
     <View style={styles.container}>
       <View style={styles.badges}>
         <View style={styles.ratingContainer}>
-          <StarIcon />
+          <StarIcon fill="white" />
           <Text style={styles.rate}>
             {Math.round(result.spoonacularScore / 2) / 10}
           </Text>
