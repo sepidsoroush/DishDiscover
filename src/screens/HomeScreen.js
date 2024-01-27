@@ -28,8 +28,10 @@ const HomeScreen = () => {
   } = useFetch();
 
   useEffect(() => {
-    fetchComplexSearch("/recipes/complexSearch", {});
-  }, []);
+    if (data.length === 0) {
+      fetchComplexSearch("/recipes/complexSearch", {});
+    }
+  }, [data]);
 
   const searchHandler = () => {
     fetchComplexSearch("/recipes/complexSearch", {

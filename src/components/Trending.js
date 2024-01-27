@@ -19,14 +19,10 @@ const Trending = () => {
   const { data, fetchData: fetchComplexSearch } = useFetch();
 
   useEffect(() => {
-    const callApi = async () => {
-      await fetchComplexSearch("/recipes/random?number=10", {});
-    };
-    callApi();
-    const intervalId = setInterval(callApi, 12 * 60 * 60 * 1000);
-
-    return () => clearInterval(intervalId);
-  }, []);
+    if (data.length === 0) {
+      fetchComplexSearch("/recipes/random?number=10", {});
+    }
+  }, [data]);
 
   if (!data || !data.recipes) {
     return null; // todo: add loading indicator or skeleton
