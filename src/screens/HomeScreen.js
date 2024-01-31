@@ -57,7 +57,7 @@ const HomeScreen = () => {
           />
           <Trending />
           <PopularCategory />
-          <SavedList />
+          <SavedList horizontal={true} />
         </ScrollView>
       )}
     </SafeAreaView>

@@ -7,7 +7,7 @@ import Spacer from "./UI/Spacer";
 import Header from "./UI/Header";
 import ResultsDetail from "./ResultsDetail";
 
-const SavedList = () => {
+const SavedList = ({ horizontal }) => {
   const navigation = useNavigation();
   const { bookmarkedIds } = useDatabaseContext();
   const { data, fetchData: fetchRecipesByIds } = useFetch();
@@ -22,13 +22,15 @@ const SavedList = () => {
   return (
     <>
       <Spacer>
-        <Header moreLink={true}>Saved Recipes 💚</Header>
+        <Header moreLink={horizontal}>Saved Recipes 💚</Header>
       </Spacer>
       <View style={styles.container}>
         <FlatList
-          horizontal
+          horizontal={horizontal}
           showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
           initialNumToRender={10}
+          numColumns={horizontal ? null : 2}
           data={data}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => {
@@ -36,7 +38,7 @@ const SavedList = () => {
               <TouchableOpacity
                 onPress={() => navigation.navigate("Show", { id: item.id })}
               >
-                <ResultsDetail result={item} />
+                <ResultsDetail result={item} bookmark={true} />
               </TouchableOpacity>
             );
           }}

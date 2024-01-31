@@ -1,10 +1,10 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { View } from "react-native";
+import SavedList from "../components/SavedList";
 
 const BookmarkScreen = () => {
   return (
     <View>
-      <Text>BookmarkScreen</Text>
+      <SavedList horizontal={false} />
     </View>
   );
 };
