@@ -18,6 +18,7 @@ import SearchScreen from "./SearchScreen";
 import BookmarkScreen from "./BookmarkScreen";
 import HomeScreen from "./HomeScreen";
 import ShowScreen from "./ShowScreen";
+import FilterScreen from "./FilterScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -37,6 +38,17 @@ function MainFlow() {
         component={ShowScreen}
         options={{ title: "" }}
       />
+    </Stack.Navigator>
+  );
+}
+
+function ExploreFlow() {
+  return (
+    <Stack.Navigator
+      screenOptions={{ contentStyle: { backgroundColor: "white" } }}
+    >
+      <Stack.Screen name="Explore" component={SearchScreen} />
+      <Stack.Screen name="Filters" component={FilterScreen} />
     </Stack.Navigator>
   );
 }
@@ -68,9 +80,10 @@ export default function TabNavigator() {
         }}
       />
       <Tab.Screen
-        name="Explore"
-        component={SearchScreen}
+        name="ExploreFlow"
+        component={ExploreFlow}
         options={{
+          headerShown: false,
           tabBarShowLabel: false,
           tabBarIcon: ({ focused }) =>
             focused ? (
