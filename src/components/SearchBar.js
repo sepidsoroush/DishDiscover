@@ -1,40 +1,29 @@
 import React, { useState } from "react";
 import { StyleSheet, View, TextInput } from "react-native";
 import { SearchIcon } from "./Icons";
-import Spacer from "./UI/Spacer";
-import { useFonts, Poppins_400Regular } from "@expo-google-fonts/poppins";
 
 const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
-  let [fontsLoaded] = useFonts({
-    Poppins_400Regular,
-  });
-
   const [isFocused, setIsFocused] = useState(false);
 
   const backgroundStyle = [
     styles.background,
     isFocused && styles.focusedBackground,
   ];
-
   return (
-    <Spacer>
-      {fontsLoaded && (
-        <View style={backgroundStyle}>
-          <SearchIcon style={styles.iconStyle} />
-          <TextInput
-            autoCapitalize="none"
-            autoCorrect={false}
-            placeholder="Search"
-            style={styles.input}
-            value={term}
-            onEndEditing={onTermSubmit}
-            onChangeText={(text) => onTermChange(text)}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-          />
-        </View>
-      )}
-    </Spacer>
+    <View style={backgroundStyle}>
+      <SearchIcon fill="#C1C1C1" style={styles.iconStyle} />
+      <TextInput
+        autoCapitalize="none"
+        autoCorrect={false}
+        placeholder="What do you want to cook?"
+        style={styles.input}
+        value={term}
+        onEndEditing={onTermSubmit}
+        onChangeText={(text) => onTermChange(text)}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+      />
+    </View>
   );
 };
 const styles = StyleSheet.create({
@@ -46,7 +35,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "#D9D9D9",
-    display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
     alignContent: "center",
@@ -57,14 +45,10 @@ const styles = StyleSheet.create({
   },
   input: {
     color: "#303030",
-    fontSize: 18,
-    fontFamily: "Poppins_400Regular",
+    fontSize: 16,
   },
-
   iconStyle: {
     alignSelf: "center",
-    width: 20,
-    height: 20,
     left: 0,
     top: 0,
     position: "absolute",

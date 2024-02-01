@@ -11,9 +11,10 @@ import {
   ActiveBookmark,
   ActiveNotification,
   ActiveProfile,
+  SearchIcon,
 } from "../components/Icons";
 import ProfileScreen from "./ProfileScreen";
-import NotificationScreen from "./NotificationScreen";
+import SearchScreen from "./SearchScreen";
 import BookmarkScreen from "./BookmarkScreen";
 import HomeScreen from "./HomeScreen";
 import ShowScreen from "./ShowScreen";
@@ -67,12 +68,16 @@ export default function TabNavigator() {
         }}
       />
       <Tab.Screen
-        name="Notification"
-        component={NotificationScreen}
+        name="Explore"
+        component={SearchScreen}
         options={{
           tabBarShowLabel: false,
           tabBarIcon: ({ focused }) =>
-            focused ? <ActiveNotification /> : <InactiveNotification />,
+            focused ? (
+              <SearchIcon fill="#E23E3E" />
+            ) : (
+              <SearchIcon fill="#C1C1C1" />
+            ),
         }}
       />
       <Tab.Screen
