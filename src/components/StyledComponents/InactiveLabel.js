@@ -12,13 +12,13 @@ const InactiveLabel = ({ children, onPress }) => {
 const styles = StyleSheet.create({
   inactiveLabel: {
     alignSelf: "flex-start",
-    paddingVertical: 8,
-    paddingHorizontal: 12,
+    padding: 8,
     borderRadius: 10,
     textAlign: "center",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    marginHorizontal: 2,
   },
   text: {
     fontSize: 13,
