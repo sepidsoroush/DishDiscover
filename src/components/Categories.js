@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
-import ActiveLabel from "./StyledComponents/ActiveLabel";
-import InactiveLabel from "./StyledComponents/InactiveLabel";
+import Label from "./UI/Label";
 
 const Categories = ({ onParamsChange }) => {
   const links = [
@@ -31,25 +30,16 @@ const Categories = ({ onParamsChange }) => {
         showsHorizontalScrollIndicator={false}
         data={links}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) =>
-          activeBtn === item.title ? (
-            <ActiveLabel
-              onPress={() => {
-                categoryHandler(item);
-              }}
-            >
-              {item.title}
-            </ActiveLabel>
-          ) : (
-            <InactiveLabel
-              onPress={() => {
-                categoryHandler(item);
-              }}
-            >
-              {item.title}
-            </InactiveLabel>
-          )
-        }
+        renderItem={({ item }) => (
+          <Label
+            active={activeBtn === item.title}
+            onPress={() => {
+              categoryHandler(item);
+            }}
+          >
+            {item.title}
+          </Label>
+        )}
         ItemSeparatorComponent={() => <View style={{ width: 8 }}></View>}
       />
     </View>

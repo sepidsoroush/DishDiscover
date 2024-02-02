@@ -8,8 +8,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LeftArrow } from "../components/Icons";
-import InactiveLabel from "../components/StyledComponents/InactiveLabel";
-import ActiveLabel from "../components/StyledComponents/ActiveLabel";
+import Label from "../components/UI/Label";
 import Header from "../components/UI/Header";
 import Spacer from "../components/UI/Spacer";
 
@@ -118,25 +117,16 @@ const FilterScreen = () => {
                 scrollEnabled={false}
                 data={item.filters}
                 keyExtractor={(filter) => filter.id}
-                renderItem={({ item }) =>
-                  filterStates[item.id] ? (
-                    <ActiveLabel
-                      onPress={() => {
-                        toggleFilter(item.id);
-                      }}
-                    >
-                      {item.title}
-                    </ActiveLabel>
-                  ) : (
-                    <InactiveLabel
-                      onPress={() => {
-                        toggleFilter(item.id);
-                      }}
-                    >
-                      {item.title}
-                    </InactiveLabel>
-                  )
-                }
+                renderItem={({ item }) => (
+                  <Label
+                    active={filterStates[item.id]}
+                    onPress={() => {
+                      toggleFilter(item.id);
+                    }}
+                  >
+                    {item.title}
+                  </Label>
+                )}
               />
             </Spacer>
           );
