@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import { AuthProvider, useAuthContext } from "./src/context/AuthContext";
 import { DatabaseProvider } from "./src/context/DatabaseContext";
+import { RecipesProvider } from "./src/context/RecipesContext";
 
 import SigninScreen from "./src/screens/SignInScreen";
 import SignupScreen from "./src/screens/SignUpScreen";
@@ -33,9 +34,11 @@ const App = () => {
 export default () => {
   return (
     <AuthProvider>
-      <DatabaseProvider>
-        <App />
-      </DatabaseProvider>
+      <RecipesProvider>
+        <DatabaseProvider>
+          <App />
+        </DatabaseProvider>
+      </RecipesProvider>
     </AuthProvider>
   );
 };

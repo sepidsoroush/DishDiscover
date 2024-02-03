@@ -8,27 +8,26 @@ import {
   Text,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import useFetch from "../hooks/useFetch";
+import { useRecipesContext } from "../context/RecipesContext";
 import Spacer from "./UI/Spacer";
 import Header from "./UI/Header";
 import ResultsDetail from "./ResultsDetail";
 
 const Trending = () => {
   const navigation = useNavigation();
-
-  const { data, fetchData: fetchComplexSearch } = useFetch();
+  const { randoms, onGetRandomRecipes } = useRecipesContext();
 
   useEffect(() => {
-    if (data.length === 0) {
-      fetchComplexSearch("/recipes/random?number=10", {});
+    if (randoms.length === 0) {
+      onGetRandomRecipes("/recipes/random?number=10", {});
     }
-  }, [data]);
+  }, [randoms]);
 
-  if (!data || !data.recipes) {
+  if (!randoms || !randoms.recipes) {
     return null; // todo: add loading indicator or skeleton
   }
 
-  const filteredData = data.recipes.filter(
+  const filteredData = randoms.recipes.filter(
     (item) => item.spoonacularScore > 50
   );
 

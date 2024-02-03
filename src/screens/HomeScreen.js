@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { StyleSheet, Text, ScrollView, SafeAreaView } from "react-native";
 import Trending from "../components/Trending";
 import PopularCategory from "../components/PopularCategory";

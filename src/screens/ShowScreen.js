@@ -8,7 +8,7 @@ import {
   FlatList,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import useFetch from "../hooks/useFetch";
+import { useRecipesContext } from "../context/RecipesContext";
 import {
   Vegan,
   GlutenFree,
@@ -24,10 +24,10 @@ import Header from "../components/UI/Header";
 const ShowScreen = ({ route }) => {
   const id = route.params.id;
   const navigation = useNavigation();
-  const { data, fetchData: fetchRecipeInfo } = useFetch();
+  const { recipe, onFindRecipeById } = useRecipesContext();
 
   useEffect(() => {
-    fetchRecipeInfo(`/recipes/${id}/information`, {});
+    onFindRecipeById(`/recipes/${id}/information`, {});
   }, []);
 
   useLayoutEffect(() => {
@@ -42,25 +42,25 @@ const ShowScreen = ({ route }) => {
 
   return (
     <Spacer>
-      <Text style={styles.title}>{data.title}</Text>
-      <Image source={{ uri: data.image }} style={styles.image} />
+      <Text style={styles.title}>{recipe.title}</Text>
+      <Image source={{ uri: recipe.image }} style={styles.image} />
       <View style={styles.iconContainer}>
-        {(data.vegetarian || data.vegan) && (
+        {(recipe.vegetarian || recipe.vegan) && (
           <View style={styles.icon}>
             <Vegan />
           </View>
         )}
-        {data.glutenFree && (
+        {recipe.glutenFree && (
           <View style={styles.icon}>
             <GlutenFree />
           </View>
         )}
-        {data.dairyFree && (
+        {recipe.dairyFree && (
           <View style={styles.icon}>
             <DairyFree />
           </View>
         )}
-        {data.cheap && (
+        {recipe.cheap && (
           <View style={styles.icon}>
             <Economic />
           </View>
@@ -69,19 +69,19 @@ const ShowScreen = ({ route }) => {
       <View style={styles.row}>
         <StarIcon fill="#FFB661" />
         <Text style={styles.info}>
-          {Math.round(data.spoonacularScore / 2) / 10}
+          {Math.round(recipe.spoonacularScore / 2) / 10}
         </Text>
       </View>
       <View style={styles.row}>
         <ClockIcon fill="#C1C1C1" />
-        <Text style={styles.info}>{data.readyInMinutes} mins,</Text>
+        <Text style={styles.info}>{recipe.readyInMinutes} mins,</Text>
       </View>
       <View style={styles.row}>
-        <Text style={styles.info}>{data.servings} servings</Text>
+        <Text style={styles.info}>{recipe.servings} servings</Text>
       </View>
       <Header>Ingredients</Header>
       <FlatList
-        data={data.extendedIngredients}
+        data={recipe.extendedIngredients}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => {
           return (

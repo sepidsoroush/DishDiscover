@@ -4,14 +4,14 @@ import Spacer from "./UI/Spacer";
 import Header from "./UI/Header";
 import Categories from "./Categories";
 import DishCard from "./DishCard";
-import useFetch from "../hooks/useFetch";
+import { useRecipesContext } from "../context/RecipesContext";
 
 const PopularCategory = () => {
   const [params, setParams] = useState({ cuisine: "italian" });
-  const { data, fetchData: fetchCategorySearch } = useFetch();
+  const { complexSearch, onComplexSearch } = useRecipesContext();
 
   useEffect(() => {
-    fetchCategorySearch("/recipes/complexSearch", params);
+    onComplexSearch("/recipes/complexSearch", params);
   }, [params]);
 
   return (
@@ -25,7 +25,7 @@ const PopularCategory = () => {
           horizontal
           showsHorizontalScrollIndicator={false}
           initialNumToRender={10}
-          data={data.results}
+          data={complexSearch.results}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => {
             return (

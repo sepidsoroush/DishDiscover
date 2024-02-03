@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { StyleSheet, View, FlatList, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useDatabaseContext } from "../context/DatabaseContext";
-import useFetch from "../hooks/useFetch";
+import { useRecipesContext } from "../context/RecipesContext";
 import Spacer from "./UI/Spacer";
 import Header from "./UI/Header";
 import ResultsDetail from "./ResultsDetail";
@@ -10,12 +10,12 @@ import ResultsDetail from "./ResultsDetail";
 const SavedList = ({ horizontal }) => {
   const navigation = useNavigation();
   const { bookmarkedIds } = useDatabaseContext();
-  const { data, fetchData: fetchRecipesByIds } = useFetch();
+  const { bulkInfo, onFindBulkInfo } = useRecipesContext();
 
   useEffect(() => {
     if (bookmarkedIds.length > 0) {
       const idsParam = bookmarkedIds.join(",");
-      fetchRecipesByIds(`/recipes/informationBulk?ids=${idsParam}`, {});
+      onFindBulkInfo(`/recipes/informationBulk?ids=${idsParam}`, {});
     }
   }, [bookmarkedIds]);
 
@@ -31,7 +31,7 @@ const SavedList = ({ horizontal }) => {
           showsVerticalScrollIndicator={false}
           initialNumToRender={10}
           numColumns={horizontal ? null : 2}
-          data={data}
+          data={bulkInfo}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => {
             return (
