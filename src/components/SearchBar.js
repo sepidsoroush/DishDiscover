@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignContent: "center",
     gap: 12,
+    flex: 1,
   },
   focusedBackground: {
     borderColor: "#E23E3E",

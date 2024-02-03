@@ -13,12 +13,14 @@ const ResultsDetail = ({ result, bookmark }) => {
   return (
     <View style={containerStyle}>
       <View style={styles.badges}>
-        <View style={styles.ratingContainer}>
-          <StarIcon fill="white" />
-          <Text style={styles.rate}>
-            {Math.round(result.spoonacularScore / 2) / 10}
-          </Text>
-        </View>
+        {result.spoonacularScore && (
+          <View style={styles.ratingContainer}>
+            <StarIcon fill="white" />
+            <Text style={styles.rate}>
+              {Math.round(result.spoonacularScore / 2) / 10}
+            </Text>
+          </View>
+        )}
         <Bookmark resultId={result.id} />
       </View>
       <Image source={{ uri: result.image }} style={imageStyle} />

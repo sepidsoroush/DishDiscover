@@ -1,16 +1,11 @@
 import React, { useState, useLayoutEffect } from "react";
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  FlatList,
-  SafeAreaView,
-} from "react-native";
+import { View, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LeftArrow } from "../components/Icons";
 import Label from "../components/UI/Label";
 import Header from "../components/UI/Header";
 import Spacer from "../components/UI/Spacer";
+import Button from "../components/UI/Button";
 
 const categories = [
   {
@@ -71,17 +66,20 @@ const categories = [
   },
 ];
 
+const initialFilterStates = () => {
+  const initialState = {};
+  categories.forEach((category) => {
+    category.filters.forEach((filter) => {
+      initialState[filter.id] = false;
+    });
+  });
+  return initialState;
+};
+
 const FilterScreen = () => {
   const navigation = useNavigation();
-  const [filterStates, setFilterStates] = useState(() => {
-    const initialState = {};
-    categories.forEach((category) => {
-      category.filters.forEach((filter) => {
-        initialState[filter.id] = false;
-      });
-    });
-    return initialState;
-  });
+
+  const [filterStates, setFilterStates] = useState(initialFilterStates);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -100,8 +98,39 @@ const FilterScreen = () => {
     }));
   };
 
+  const activeFilters = categories.reduce((result, category) => {
+    const activeCategoryFilters = category.filters
+      .filter((filter) => filterStates[filter.id])
+      .map((filter) => filter.params);
+    return [...result, ...activeCategoryFilters];
+  }, []);
+
+  const combineParams = (filters) => {
+    const combinedParams = filters.reduce((result, filter) => {
+      const filterLabel = Object.keys(filter)[0];
+      if (result[filterLabel]) {
+        result[filterLabel] += `,${filter[filterLabel]}`;
+      } else {
+        result[filterLabel] = filter[filterLabel];
+      }
+      return result;
+    }, {});
+    return combinedParams;
+  };
+
+  const combinedParams = combineParams(activeFilters);
+
+  const applyFilter = () => {
+    // console.log(combinedParams);
+    navigation.navigate("Explore", { selectedFilters: combinedParams });
+  };
+  const cancelFilter = () => {
+    setFilterStates(initialFilterStates);
+    navigation.goBack();
+  };
+
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <FlatList
         data={categories}
         keyExtractor={(category) => category.id}
@@ -132,7 +161,17 @@ const FilterScreen = () => {
           );
         }}
       />
-    </SafeAreaView>
+      <Spacer>
+        <View style={styles.buttonContainer}>
+          <Button type="secondary" onPress={cancelFilter}>
+            Cancel
+          </Button>
+          <Button type="primary" onPress={applyFilter}>
+            Apply Filters
+          </Button>
+        </View>
+      </Spacer>
+    </View>
   );
 };
 
@@ -142,6 +181,11 @@ const styles = StyleSheet.create({
   },
   filterContainer: {
     marginVertical: 10,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    gap: 10,
   },
 });
 
