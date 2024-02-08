@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
-import { StarIcon } from "./Icons";
-import Bookmark from "./UI/Bookmark";
+import { StarIcon } from "../../Icons";
+import { Bookmark } from "../../UI";
 
-const ResultsDetail = ({ result, bookmark }) => {
+export const ResultsDetail = ({ result, bookmark }) => {
   const containerStyle = bookmark ? styles.containerBookmark : styles.container;
   const imageStyle = bookmark ? styles.imageBookmark : styles.image;
   const titleContainerStyle = bookmark
@@ -91,5 +91,3 @@ const styles = StyleSheet.create({
     marginTop: 6,
   },
 });
-
-export default ResultsDetail;

@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
 
-const Row = ({ onPress, leftIcon, rightIcon, title, content, type }) => {
+export const Row = ({ onPress, leftIcon, rightIcon, title, content, type }) => {
   return (
     <View style={styles.row}>
       <View style={styles.leftContainer}>
@@ -48,5 +48,3 @@ const styles = StyleSheet.create({
     color: "#E23E3E",
   },
 });
-
-export default Row;

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
-import Label from "./UI/Label";
+import { Label } from "../../UI";
 
-const Categories = ({ onParamsChange }) => {
+export const Categories = ({ onParamsChange }) => {
   const links = [
     { id: 1, title: "Italian", params: { cuisine: "italian" } },
     { id: 2, title: "Salad", params: { type: "salad" } },
@@ -56,5 +56,3 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-
-export default Categories;

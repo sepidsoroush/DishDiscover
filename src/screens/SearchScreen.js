@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { View, TouchableOpacity, StyleSheet, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useRecipesContext } from "../context/RecipesContext";
-import ResultsDetail from "../components/ResultsDetail";
-import SearchBar from "../components/SearchBar";
-import Spacer from "../components/UI/Spacer";
+import { ResultsDetail, SearchBar } from "../components/features";
+import { Spacer } from "../components/UI";
 import { FilterIcon } from "../components/Icons";
 
 const SearchScreen = ({ route }) => {

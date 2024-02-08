@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import SavedList from "../components/SavedList";
+import { SavedList } from "../components/features";
 
 const BookmarkScreen = () => {
   return (

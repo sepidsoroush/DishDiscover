@@ -3,7 +3,7 @@ import { StyleSheet, ActivityIndicator } from "react-native";
 import { Text, Button, Input } from "@rneui/themed";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-const AuthForm = ({ error, loading, onSubmit, type }) => {
+export const AuthForm = ({ error, loading, onSubmit, type }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -61,5 +61,3 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
 });
-
-export default AuthForm;

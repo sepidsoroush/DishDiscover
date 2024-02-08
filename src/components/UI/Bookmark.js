@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 import { ActiveBookmark, InactiveBookmark } from "../Icons";
 import { useDatabaseContext } from "../../context/DatabaseContext";
 
-const Bookmark = ({ resultId }) => {
+export const Bookmark = ({ resultId }) => {
   const { bookmarkedIds, toggleBookmark } = useDatabaseContext();
 
   const itemId = resultId.toString();
@@ -34,5 +34,3 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-
-export default Bookmark;

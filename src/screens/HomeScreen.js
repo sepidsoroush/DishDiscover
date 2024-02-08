@@ -1,9 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, ScrollView, SafeAreaView } from "react-native";
-import Trending from "../components/Trending";
-import PopularCategory from "../components/PopularCategory";
-import SavedList from "../components/SavedList";
-import Spacer from "../components/UI/Spacer";
+import { SavedList, PopularCategory, Trending } from "../components/features";
+import { Spacer } from "../components/UI";
 
 const HomeScreen = () => {
   return (

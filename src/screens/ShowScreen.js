@@ -18,8 +18,7 @@ import {
   StarIcon,
   ClockIcon,
 } from "../components/Icons";
-import Spacer from "../components/UI/Spacer";
-import Header from "../components/UI/Header";
+import { Spacer, Header } from "../components/UI";
 
 const ShowScreen = ({ route }) => {
   const id = route.params.id;

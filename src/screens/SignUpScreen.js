@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import AuthForm from "../components/AuthForm";
 import { useAuthContext } from "../context/AuthContext";
 import { useNavigation } from "@react-navigation/native";
+import { AuthForm } from "../components/features";
 
 const SignupScreen = () => {
   const { signUp, error, loading, clearErrorMessage } = useAuthContext();

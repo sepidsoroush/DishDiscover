@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
-import { ClockIcon } from "./Icons";
-import Bookmark from "./UI/Bookmark";
+import { ClockIcon } from "../../Icons";
+import { Bookmark } from "../../UI";
 
-const DishCard = ({ result }) => {
+export const DishCard = ({ result }) => {
   return (
     <>
       <Image source={{ uri: result.image }} style={styles.image} />
@@ -73,5 +73,3 @@ const styles = StyleSheet.create({
     marginLeft: 2,
   },
 });
-
-export default DishCard;

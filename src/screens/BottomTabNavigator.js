@@ -5,11 +5,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   InactiveHome,
   InactiveBookmark,
-  InactiveNotification,
   InactiveProfile,
   ActiveHome,
   ActiveBookmark,
-  ActiveNotification,
   ActiveProfile,
   SearchIcon,
 } from "../components/Icons";

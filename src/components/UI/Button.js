@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
-const Button = ({ onPress, type, state, children }) => {
+export const Button = ({ onPress, type, state, children }) => {
   const getButtonStyles = () => {
     switch (type) {
       case "primary":
@@ -90,5 +90,3 @@ const styles = StyleSheet.create({
     color: "#919191",
   },
 });
-
-export default Button;

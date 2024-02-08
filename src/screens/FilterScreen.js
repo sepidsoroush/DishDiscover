@@ -2,10 +2,7 @@ import React, { useState, useLayoutEffect } from "react";
 import { View, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LeftArrow } from "../components/Icons";
-import Label from "../components/UI/Label";
-import Header from "../components/UI/Header";
-import Spacer from "../components/UI/Spacer";
-import Button from "../components/UI/Button";
+import { Label, Header, Spacer, Button } from "../components/UI";
 
 const categories = [
   {

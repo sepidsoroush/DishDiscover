@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
-const Label = ({ children, onPress, active }) => {
+export const Label = ({ children, onPress, active }) => {
   const containerStyle = active ? styles.activeLabel : styles.inactiveLabel;
   const textColor = active ? "white" : "#EE8B8B";
 
@@ -37,5 +37,3 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
-
-export default Label;

@@ -8,12 +8,11 @@ import {
   Text,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { useRecipesContext } from "../context/RecipesContext";
-import Spacer from "./UI/Spacer";
-import Header from "./UI/Header";
-import ResultsDetail from "./ResultsDetail";
+import { useRecipesContext } from "../../../context/RecipesContext";
+import { Spacer, Header } from "../../UI";
+import { ResultsDetail } from "../cards/ResultsDetail";
 
-const Trending = () => {
+export const Trending = () => {
   const navigation = useNavigation();
   const { randoms, onGetRandomRecipes } = useRecipesContext();
 
@@ -53,7 +52,7 @@ const Trending = () => {
                 </TouchableOpacity>
                 <View style={styles.credit}>
                   <Image
-                    source={require(`../assets/Profile1.png`)}
+                    source={require(`../../../assets/Profile1.png`)}
                     style={styles.profile}
                   />
                   <Text style={styles.sourceName}>By {item.sourceName}</Text>
@@ -93,5 +92,3 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
 });
-
-export default Trending;

@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { StyleSheet, View, TextInput } from "react-native";
-import { SearchIcon } from "./Icons";
+import { SearchIcon } from "../../Icons";
 
-const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
+export const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const backgroundStyle = [
     styles.background,
     isFocused && styles.focusedBackground,
   ];
+
   return (
     <View style={backgroundStyle}>
       <SearchIcon fill="#C1C1C1" style={styles.iconStyle} />
@@ -55,5 +56,3 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
 });
-
-export default SearchBar;

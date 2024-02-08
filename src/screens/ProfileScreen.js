@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Alert } from "react-native";
 import { useAuthContext } from "../context/AuthContext";
-import Spacer from "../components/UI/Spacer";
-import Row from "../components/UI/Row";
+import { Spacer, Row } from "../components/UI";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const ProfileScreen = () => {

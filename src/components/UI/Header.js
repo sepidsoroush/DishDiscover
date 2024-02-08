@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { RightArrow } from "../Icons";
 
-const Header = ({ children, moreLink }) => {
+export const Header = ({ children, moreLink }) => {
   return (
     <View style={styles.headerContainer}>
       <Text style={styles.headerTitle}>{children}</Text>
@@ -45,5 +45,3 @@ const styles = StyleSheet.create({
     height: 20,
   },
 });
-
-export default Header;

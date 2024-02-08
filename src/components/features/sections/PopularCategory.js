@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { FlatList, View, TouchableOpacity, StyleSheet } from "react-native";
-import Spacer from "./UI/Spacer";
-import Header from "./UI/Header";
-import Categories from "./Categories";
-import DishCard from "./DishCard";
-import { useRecipesContext } from "../context/RecipesContext";
+import { Spacer, Header } from "../../UI";
+import { Categories } from "../utilities/Categories";
+import { DishCard } from "../cards/DishCard";
+import { useRecipesContext } from "../../../context/RecipesContext";
 
-const PopularCategory = () => {
+export const PopularCategory = () => {
   const [params, setParams] = useState({ cuisine: "italian" });
   const { complexSearch, onComplexSearch } = useRecipesContext();
 
@@ -53,5 +52,3 @@ const styles = StyleSheet.create({
     height: 250,
   },
 });
-
-export default PopularCategory;

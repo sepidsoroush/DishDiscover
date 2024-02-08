@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import { StyleSheet, View, FlatList, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { useDatabaseContext } from "../context/DatabaseContext";
-import { useRecipesContext } from "../context/RecipesContext";
-import Spacer from "./UI/Spacer";
-import Header from "./UI/Header";
-import ResultsDetail from "./ResultsDetail";
+import { useDatabaseContext } from "../../../context/DatabaseContext";
+import { useRecipesContext } from "../../../context/RecipesContext";
+import { Spacer, Header } from "../../UI";
+import { ResultsDetail } from "../cards/ResultsDetail";
 
-const SavedList = ({ horizontal }) => {
+export const SavedList = ({ horizontal }) => {
   const navigation = useNavigation();
   const { bookmarkedIds } = useDatabaseContext();
   const { bulkInfo, onFindBulkInfo } = useRecipesContext();
@@ -53,5 +52,3 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
 });
-
-export default SavedList;
