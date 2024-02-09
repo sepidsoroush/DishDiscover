@@ -2,9 +2,9 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { RightArrow } from "../Icons";
 
-export const Header = ({ children, moreLink }) => {
+export const Header = ({ style, children, moreLink }) => {
   return (
-    <View style={styles.headerContainer}>
+    <View style={[styles.headerContainer, style]}>
       <Text style={styles.headerTitle}>{children}</Text>
       {moreLink && (
         <View style={styles.rightContainer}>
