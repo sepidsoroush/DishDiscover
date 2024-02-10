@@ -4,15 +4,20 @@ import { ClockIcon } from "../../Icons";
 import { Bookmark } from "../../UI";
 
 export const DishCard = ({ result }) => {
+  const rndInt = Math.floor(Math.random() * 11 + 2) * 5;
   return (
     <>
       <Image source={{ uri: result.image }} style={styles.image} />
       <View style={styles.background}>
-        <Text style={styles.title}>{result.title}</Text>
+        <Text style={styles.title}>
+          {result.title.length > 50
+            ? result.title.slice(0, 50) + "..."
+            : result.title}
+        </Text>
         <View style={styles.info}>
           <View style={styles.timeContainer}>
             <ClockIcon fill="#C1C1C1" />
-            <Text style={styles.time}>10 Mins</Text>
+            <Text style={styles.time}>{rndInt} Mins</Text>
           </View>
           <Bookmark resultId={result.id} />
         </View>

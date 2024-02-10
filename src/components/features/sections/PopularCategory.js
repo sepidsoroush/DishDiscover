@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { FlatList, View, TouchableOpacity, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { Spacer, Header } from "../../UI";
 import { Categories } from "../utilities/Categories";
 import { DishCard } from "../cards/DishCard";
 import { useRecipesContext } from "../../../context/RecipesContext";
 
 export const PopularCategory = () => {
+  const navigation = useNavigation();
   const [params, setParams] = useState({ cuisine: "italian" });
   const { complexSearch, onComplexSearch } = useRecipesContext();
 
@@ -30,7 +32,7 @@ export const PopularCategory = () => {
             return (
               <TouchableOpacity
                 style={styles.card}
-                onPress={() => console.log(item)}
+                onPress={() => navigation.navigate("Show", { id: item.id })}
               >
                 <DishCard result={item} />
               </TouchableOpacity>
