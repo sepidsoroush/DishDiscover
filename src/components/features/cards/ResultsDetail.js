@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   containerBookmark: {
     marginTop: 12,
-    paddingRight: 20,
+    paddingRight: 15,
     width: "100%",
   },
   badges: {

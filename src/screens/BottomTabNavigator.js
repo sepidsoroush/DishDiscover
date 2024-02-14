@@ -17,6 +17,7 @@ import BookmarkScreen from "./BookmarkScreen";
 import HomeScreen from "./HomeScreen";
 import ShowScreen from "./ShowScreen";
 import FilterScreen from "./FilterScreen";
+import ExploreScreen from "./ExploreScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -45,7 +46,8 @@ function ExploreFlow() {
     <Stack.Navigator
       screenOptions={{ contentStyle: { backgroundColor: "white" } }}
     >
-      <Stack.Screen name="Explore" component={SearchScreen} />
+      <Stack.Screen name="Explore" component={ExploreScreen} />
+      <Stack.Screen name="Search Result" component={SearchScreen} />
       <Stack.Screen name="Filters" component={FilterScreen} />
     </Stack.Navigator>
   );

@@ -8,15 +8,17 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useRecipesContext } from "../context/RecipesContext";
-import { ResultsDetail, SearchBar } from "../components/features";
+import { SearchBar, CategoryCard } from "../components/features";
 import { Spacer } from "../components/UI";
 import { FilterIcon, LeftArrow } from "../components/Icons";
+import links from "../assets/categories";
 
-const SearchScreen = ({ route }) => {
+const ExploreScreen = () => {
   const navigation = useNavigation();
   const [term, setTerm] = useState("");
+  const [params, setParams] = useState(null);
 
-  const { complexSearch, onComplexSearch, loading } = useRecipesContext();
+  const { onComplexSearch, loading } = useRecipesContext();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -29,14 +31,19 @@ const SearchScreen = ({ route }) => {
   }, [navigation]);
 
   useEffect(() => {
-    if (route.params && route.params.selectedFilters) {
-      const filters = route.params.selectedFilters;
-      onComplexSearch("/recipes/complexSearch", filters);
+    if (params) {
+      onComplexSearch("/recipes/complexSearch", params);
+      navigation.navigate("Search Result");
     }
-  }, [route]);
+  }, [params]);
 
   const searchHandler = () => {
     onComplexSearch("/recipes/complexSearch", { query: term });
+    navigation.navigate("Search Result");
+  };
+
+  const categoryHandler = (event) => {
+    setParams(event.params);
   };
 
   return (
@@ -67,13 +74,11 @@ const SearchScreen = ({ route }) => {
           showsVerticalScrollIndicator={false}
           initialNumToRender={10}
           numColumns={2}
-          data={complexSearch.results}
+          data={links.map((link) => link.filters).flat()}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Show", { id: item.id })}
-            >
-              <ResultsDetail result={item} bookmark={true} />
+            <TouchableOpacity onPress={() => categoryHandler(item)}>
+              <CategoryCard item={item} />
             </TouchableOpacity>
           )}
         />
@@ -99,4 +104,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SearchScreen;
+export default ExploreScreen;

@@ -50,13 +50,13 @@ export const Trending = () => {
                 >
                   <ResultsDetail result={item} />
                 </TouchableOpacity>
-                <View style={styles.credit}>
+                {/* <View style={styles.credit}>
                   <Image
-                    source={require(`../../../assets/Profile1.png`)}
+                    source="https://randomuser.me/api/portraits/women/90.jpghttps://randomuser.me/api/portraits/women/90.jpg"
                     style={styles.profile}
                   />
                   <Text style={styles.sourceName}>By {item.sourceName}</Text>
-                </View>
+                </View> */}
               </View>
             );
           }}

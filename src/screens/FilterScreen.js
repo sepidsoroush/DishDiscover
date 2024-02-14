@@ -3,69 +3,11 @@ import { View, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LeftArrow } from "../components/Icons";
 import { Label, Header, Spacer, Button } from "../components/UI";
-
-const categories = [
-  {
-    id: 1,
-    category: "cuisine",
-    filters: [
-      { id: 11, title: "Italian", params: { cuisine: "italian" } },
-      {
-        id: 12,
-        title: "Mexican",
-        params: { cuisine: "mexican" },
-      },
-      {
-        id: 13,
-        title: "Mediterranean",
-        params: { cuisine: "mediterranean" },
-      },
-    ],
-  },
-  {
-    id: 2,
-    category: "type",
-    filters: [
-      { id: 21, title: "Salad", params: { type: "salad" } },
-      {
-        id: 22,
-        title: "Breakfast",
-        params: { type: "breakfast" },
-      },
-      {
-        id: 23,
-        title: "Soup",
-        params: { type: "soup" },
-      },
-      {
-        id: 24,
-        title: "Dessert",
-        params: { type: "dessert" },
-      },
-    ],
-  },
-  {
-    id: 3,
-    category: "diet",
-    filters: [
-      { id: 31, title: "Ketogenic", params: { diet: "ketogenic" } },
-      {
-        id: 32,
-        title: "Vegan",
-        params: { diet: "vegan" },
-      },
-    ],
-  },
-  {
-    id: 4,
-    category: "intolerances",
-    filters: [{ id: 41, title: "Gluten", params: { intolerances: "gluten" } }],
-  },
-];
+import links from "../assets/categories";
 
 const initialFilterStates = () => {
   const initialState = {};
-  categories.forEach((category) => {
+  links.forEach((category) => {
     category.filters.forEach((filter) => {
       initialState[filter.id] = false;
     });
@@ -95,7 +37,7 @@ const FilterScreen = () => {
     }));
   };
 
-  const activeFilters = categories.reduce((result, category) => {
+  const activeFilters = links.reduce((result, category) => {
     const activeCategoryFilters = category.filters
       .filter((filter) => filterStates[filter.id])
       .map((filter) => filter.params);
@@ -118,8 +60,7 @@ const FilterScreen = () => {
   const combinedParams = combineParams(activeFilters);
 
   const applyFilter = () => {
-    // console.log(combinedParams);
-    navigation.navigate("Explore", { selectedFilters: combinedParams });
+    navigation.navigate("Search Result", { selectedFilters: combinedParams });
   };
   const cancelFilter = () => {
     setFilterStates(initialFilterStates);
@@ -129,7 +70,7 @@ const FilterScreen = () => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={categories}
+        data={links}
         keyExtractor={(category) => category.id}
         renderItem={({ item }) => {
           return (

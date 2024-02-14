@@ -5,13 +5,13 @@ import { SearchIcon } from "../../Icons";
 export const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
   const [isFocused, setIsFocused] = useState(false);
 
-  const backgroundStyle = [
-    styles.background,
-    isFocused && styles.focusedBackground,
-  ];
+  const handleFocus = () => setIsFocused(true);
+  const handleBlur = () => setIsFocused(false);
+
+  const getBorderColor = () => (isFocused ? "#E23E3E" : "#D9D9D9");
 
   return (
-    <View style={backgroundStyle}>
+    <View style={[styles.background, { borderColor: getBorderColor() }]}>
       <SearchIcon fill="#C1C1C1" style={styles.iconStyle} />
       <TextInput
         autoCapitalize="none"
@@ -21,12 +21,13 @@ export const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
         value={term}
         onEndEditing={onTermSubmit}
         onChangeText={(text) => onTermChange(text)}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
       />
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   background: {
     height: 50,
@@ -35,19 +36,16 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#D9D9D9",
     flexDirection: "row",
     justifyContent: "flex-start",
-    alignContent: "center",
+    alignItems: "center", // Use alignItems instead of alignContent
     gap: 12,
     flex: 1,
-  },
-  focusedBackground: {
-    borderColor: "#E23E3E",
   },
   input: {
     color: "#303030",
     fontSize: 16,
+    flex: 1, // Make input field take up remaining space
   },
   iconStyle: {
     alignSelf: "center",

@@ -1,6 +1,7 @@
 export * from "./auth/AuthForm";
 export * from "./cards/DishCard";
 export * from "./cards/ResultsDetail";
+export * from "./cards/CategoryCard";
 export * from "./sections/PopularCategory";
 export * from "./sections/SavedList";
 export * from "./sections/Trending";

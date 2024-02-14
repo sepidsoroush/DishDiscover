@@ -1,21 +1,9 @@
 import React, { useState } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 import { Label } from "../../UI";
+import links from "../../../assets/categories";
 
 export const Categories = ({ onParamsChange }) => {
-  const links = [
-    { id: 1, title: "Italian", params: { cuisine: "italian" } },
-    { id: 2, title: "Salad", params: { type: "salad" } },
-    { id: 3, title: "Breakfast", params: { type: "breakfast" } },
-    { id: 4, title: "Mexican", params: { cuisine: "mexican" } },
-    { id: 5, title: "Ketogenic", params: { diet: "ketogenic" } },
-    { id: 6, title: "Vegan", params: { diet: "vegan" } },
-    { id: 7, title: "Soup", params: { type: "soup" } },
-    { id: 8, title: "Mediterranean", params: { cuisine: "mediterranean" } },
-    { id: 9, title: "Gluten", params: { intolerances: "gluten" } },
-    { id: 10, title: "Dessert", params: { type: "dessert" } },
-  ];
-
   const [activeBtn, setActiveBtn] = useState("Italian");
 
   const categoryHandler = (event) => {
@@ -23,12 +11,14 @@ export const Categories = ({ onParamsChange }) => {
     setActiveBtn(event.title);
   };
 
+  const filteredCategories = links.map((link) => link.filters).flat();
+
   return (
     <View style={styles.container}>
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
-        data={links}
+        data={filteredCategories}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <Label

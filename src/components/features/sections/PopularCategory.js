@@ -12,8 +12,11 @@ export const PopularCategory = () => {
   const { complexSearch, onComplexSearch } = useRecipesContext();
 
   useEffect(() => {
-    onComplexSearch("/recipes/complexSearch", params);
-  }, [params]);
+    const unsubscribe = navigation.addListener("focus", () => {
+      onComplexSearch("/recipes/complexSearch", params);
+    });
+    return unsubscribe;
+  }, [navigation, params]);
 
   return (
     <>
