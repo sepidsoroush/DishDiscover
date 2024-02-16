@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Alert } from "react-native";
+import { Alert, Switch } from "react-native";
 import { useAuthContext } from "../context/AuthContext";
 import { Spacer, Row } from "../components/UI";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const ProfileScreen = () => {
   const { user, signOut } = useAuthContext();
-  const [theme, setTheme] = useState("Light");
+  const [isEnabled, setIsEnabled] = useState(false);
 
   const signoutHandler = () =>
     Alert.alert("Log out", "Are you sure you want to log out?", [
@@ -19,7 +19,7 @@ const ProfileScreen = () => {
     ]);
 
   const themeToggleHandler = () => {
-    setTheme((prev) => (prev === "Dark" ? "Light" : "Dark"));
+    setIsEnabled((previousState) => !previousState);
     Alert.alert("Toggle Theme", "This feature will be added soon!", [
       { text: "OK", onPress: () => console.log("Toggle Theme") },
     ]);
@@ -36,11 +36,14 @@ const ProfileScreen = () => {
       <Row
         onPress={themeToggleHandler}
         rightIcon={
-          theme === "Light" ? (
-            <Icon name="toggle-switch-off-outline" size={24} />
-          ) : (
-            <Icon name="toggle-switch" size={24} color="#E23E3E" />
-          )
+          <Switch
+            trackColor={{ true: "#E23E3E", false: "#606060" }}
+            thumbColor={isEnabled ? "#F9D8D8" : "#f4f3f4"}
+            ios_backgroundColor="#606060"
+            onValueChange={themeToggleHandler}
+            value={isEnabled}
+            style={{ transform: [{ scaleX: 0.6 }, { scaleY: 0.6 }] }}
+          />
         }
         title="Dark Mode"
       />
