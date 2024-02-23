@@ -1,16 +1,16 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { RightArrow } from "../Icons";
 
-export const Header = ({ style, children, moreLink }) => {
+export const Header = ({ style, children, moreLink, onPress }) => {
   return (
     <View style={[styles.headerContainer, style]}>
       <Text style={styles.headerTitle}>{children}</Text>
       {moreLink && (
-        <View style={styles.rightContainer}>
+        <TouchableOpacity style={styles.rightContainer} onPress={onPress}>
           <Text style={styles.headerSubtitle}>See all</Text>
           <RightArrow style={styles.headerIcon} fill="#E23E3E" />
-        </View>
+        </TouchableOpacity>
       )}
     </View>
   );

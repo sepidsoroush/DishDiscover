@@ -21,7 +21,12 @@ export const PopularCategory = () => {
   return (
     <>
       <Spacer>
-        <Header moreLink={false}>Popular Category</Header>
+        <Header
+          moreLink={true}
+          onPress={() => navigation.navigate("ExploreFlow")}
+        >
+          Popular Category
+        </Header>
       </Spacer>
       <Categories onParamsChange={setParams} />
       <View style={styles.container}>

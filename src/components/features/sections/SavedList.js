@@ -29,7 +29,12 @@ export const SavedList = ({ horizontal }) => {
     <View style={styles.container}>
       {bookmarkedIds.length > 0 ? (
         <Spacer>
-          <Header moreLink={horizontal}>Saved Recipes 💚</Header>
+          <Header
+            moreLink={horizontal}
+            onPress={() => navigation.navigate("Bookmark")}
+          >
+            Saved Recipes 💚
+          </Header>
           <FlatList
             horizontal={horizontal}
             showsHorizontalScrollIndicator={false}

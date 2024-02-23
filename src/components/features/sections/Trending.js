@@ -33,7 +33,7 @@ export const Trending = () => {
   return (
     <>
       <Spacer>
-        <Header moreLink={true}>Trending now 🔥</Header>
+        <Header moreLink={false}>Trending now 🔥</Header>
       </Spacer>
       <View style={styles.container}>
         <FlatList
@@ -50,13 +50,6 @@ export const Trending = () => {
                 >
                   <ResultsDetail result={item} />
                 </TouchableOpacity>
-                {/* <View style={styles.credit}>
-                  <Image
-                    source="https://randomuser.me/api/portraits/women/90.jpghttps://randomuser.me/api/portraits/women/90.jpg"
-                    style={styles.profile}
-                  />
-                  <Text style={styles.sourceName}>By {item.sourceName}</Text>
-                </View> */}
               </View>
             );
           }}
@@ -74,21 +67,5 @@ const styles = StyleSheet.create({
   card: {
     display: "flex",
     justifyContent: "space-between",
-  },
-  credit: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    bottom: 0,
-  },
-  profile: {
-    width: 32,
-    height: 32,
-  },
-  sourceName: {
-    marginLeft: 8,
-    color: "#A9A9A9",
-    fontSize: 12,
   },
 });
