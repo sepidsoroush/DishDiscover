@@ -7,3 +7,4 @@ export * from "./sections/SavedList";
 export * from "./sections/Trending";
 export * from "./utilities/Categories";
 export * from "./utilities/SearchBar";
+export * from "./utilities/EmptyState";

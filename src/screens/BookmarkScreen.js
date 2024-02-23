@@ -1,19 +1,12 @@
-import { StyleSheet, View } from "react-native";
+import { ScrollView } from "react-native";
 import { SavedList } from "../components/features";
 
 const BookmarkScreen = () => {
   return (
-    <View style={styles.container}>
+    <ScrollView>
       <SavedList horizontal={false} />
-    </View>
+    </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginBottom: 50,
-  },
-});
 
 export default BookmarkScreen;
